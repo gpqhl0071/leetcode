@@ -2,6 +2,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * 合并两个数组，并获取数组的中位数
+ */
 public class gp4 {
   public static void main(String[] args) {
     System.out.println(findMedianSortedArrays(new int[]{1, 1}, new int[]{1, 2}));
@@ -23,9 +26,9 @@ public class gp4 {
 
     int size = list.size();
 
-    boolean isJi = size % 2 != 0;
+    boolean isJi = size % 2 != 0; // 判断是否为奇数
 
-    int targetIndex = isJi ? size / 2 : size / 2 - 1;
+    int targetIndex = isJi ? size / 2 : size / 2 - 1; // 目标中位数索引
 
     double sum = 0;
     int currentIndex = 0;
