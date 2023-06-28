@@ -3,46 +3,33 @@
  */
 public class gp8 {
   public int myAtoi(String s) {
-    s = s.trim();
+    int index = 0;
+    int sign = 1;
+    int result = 0;
 
-    if (s.equals("") || (s.length() == 1 && (s.equals("-") || s.equals("+")))) {
-      return 0;
+    // Skip leading whitespaces
+    while (index < s.length() && s.charAt(index) == ' ') {
+      index++;
     }
 
-    int sign = s.charAt(0) == '-' ? -1 : 1;
-    if (s.charAt(0) == '-' || s.charAt(0) == '+') {
-      s = s.substring(1);
+    // Check sign
+    if (index < s.length() && (s.charAt(index) == '-' || s.charAt(index) == '+')) {
+      sign = (s.charAt(index++) == '-') ? -1 : 1;
     }
 
-    StringBuilder result = new StringBuilder();
-    for (char c : s.toCharArray()) {
-      if (Character.isDigit(c)) {
-        result.append(c);
-      } else {
-        break;
+    // Process digits
+    while (index < s.length() && Character.isDigit(s.charAt(index))) {
+      int digit = s.charAt(index++) - '0';
+
+      // Check for integer overflow/underflow
+      if (result > (Integer.MAX_VALUE - digit) / 10) {
+        return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
       }
+
+      result = result * 10 + digit;
     }
 
-    if (result.length() == 0) {
-      return 0;
-    }
-
-    long num = 0;
-    try {
-      num = Long.parseLong(result.toString());
-    } catch (NumberFormatException e) {
-      return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
-    }
-
-    num *= sign;
-    if (num > Integer.MAX_VALUE) {
-      return Integer.MAX_VALUE;
-    }
-    if (num < Integer.MIN_VALUE) {
-      return Integer.MIN_VALUE;
-    }
-
-    return (int) num;
+    return result * sign;
   }
 
   public static void main(String[] args) {
