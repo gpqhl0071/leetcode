@@ -1,6 +1,3 @@
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * 编写一个函数来查找字符串数组中的最长公共前缀。
  */
