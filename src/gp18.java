@@ -26,11 +26,11 @@ public class gp18 {
       if (i > 0 && nums[i] == nums[i - 1]) {
         continue;
       }
-      if (nums[i] + nums[i + 1] + nums[i + 2] + nums[i + 3] > target) {
+      if ((long) nums[i] + (long) nums[i + 1] + (long) nums[i + 2] + (long) nums[i + 3] > target) {
         // 前4个小数相加，比目标值大，则列表中午满足条件的数据，直接跳出，返回
         break;
       }
-      if (nums[i] + nums[n - 3] + nums[n - 2] + nums[n - 1] < target) {
+      if ((long) nums[i] + (long) nums[n - 3] + (long) nums[n - 2] + (long) nums[n - 1] < target) {
         // 第一个元素，和最大的3个元素加和小于目标值，则直接跳过第i个元素，遍历下一个值
         continue;
       }
@@ -40,10 +40,10 @@ public class gp18 {
         if (j > i + 1 && nums[j] == nums[j - 1]) {
           continue;
         }
-        if (nums[i] + nums[j] + nums[j + 1] + nums[j + 2] > target) {
+        if ((long) nums[i] + (long) nums[j] + (long) nums[j + 1] + (long) nums[j + 2] > target) {
           break;
         }
-        if (nums[i] + nums[j] + nums[n - 2] + nums[n - 1] < target) {
+        if ((long) nums[i] + (long) nums[j] + (long) nums[n - 2] + (long) nums[n - 1] < target) {
           continue;
         }
 
@@ -51,7 +51,7 @@ public class gp18 {
         int left = j + 1;
         int right = n - 1;
         while (left < right) {
-          int sum = nums[i] + nums[j] + nums[left] + nums[right];
+          long sum = (long) nums[i] + (long) nums[j] + (long) nums[left] + (long) nums[right];
           if (sum == target) {
             resultList.add(Arrays.asList(nums[i], nums[j], nums[left], nums[right]));
             while (left < right && nums[left] == nums[left + 1]) {
@@ -75,6 +75,6 @@ public class gp18 {
 
   public static void main(String[] args) {
     gp18 gp = new gp18();
-    System.out.println(gp.fourSum(new int[]{1, 0, -1, 0, -2, 2}, 0));
+    System.out.println(gp.fourSum(new int[]{0, 0, 0, 1000000000, 1000000000, 1000000000, 1000000000}, 1000000000));
   }
 }
