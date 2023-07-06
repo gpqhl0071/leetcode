@@ -21,6 +21,7 @@ public class gp18 {
     Arrays.sort(nums);
     int n = nums.length;
 
+    // 【第一个元素】
     for (int i = 0; i < n - 3; i++) {
       if (i > 0 && nums[i] == nums[i - 1]) {
         continue;
@@ -34,6 +35,7 @@ public class gp18 {
         continue;
       }
 
+      //【第二个元素】
       for (int j = i + 1; j < n - 2; j++) {
         if (j > i + 1 && nums[j] == nums[j - 1]) {
           continue;
@@ -45,6 +47,7 @@ public class gp18 {
           continue;
         }
 
+        // 固定前两个元素后，通过两个指针，左指针指向第三个元素，和有指针指向末尾的元素，然后遍历汇总加和，再移动指针位置
         int left = j + 1;
         int right = n - 1;
         while (left < right) {
@@ -52,11 +55,11 @@ public class gp18 {
           if (sum == target) {
             resultList.add(Arrays.asList(nums[i], nums[j], nums[left], nums[right]));
             while (left < right && nums[left] == nums[left + 1]) {
-              left++;
+              left++; // 跳过重复
             }
             left++;
             while (left < right && nums[right] == nums[right - 1]) {
-              right--;
+              right--; // 跳过重复
             }
             right--;
           } else if (sum < target) {
